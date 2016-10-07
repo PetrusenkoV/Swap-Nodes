@@ -1,0 +1,6 @@
+C:\Users\v.petrusenko\WorkingFolder\TrainingTasks\SwapNodes\SwapNodes\bin\Debug\SwapNodes.exe.config
+C:\Users\v.petrusenko\WorkingFolder\TrainingTasks\SwapNodes\SwapNodes\obj\Debug\SwapNodes.csprojResolveAssemblyReference.cache
+C:\Users\v.petrusenko\WorkingFolder\TrainingTasks\SwapNodes\SwapNodes\bin\Debug\SwapNodes.exe
+C:\Users\v.petrusenko\WorkingFolder\TrainingTasks\SwapNodes\SwapNodes\bin\Debug\SwapNodes.pdb
+C:\Users\v.petrusenko\WorkingFolder\TrainingTasks\SwapNodes\SwapNodes\obj\Debug\SwapNodes.exe
+C:\Users\v.petrusenko\WorkingFolder\TrainingTasks\SwapNodes\SwapNodes\obj\Debug\SwapNodes.pdb
