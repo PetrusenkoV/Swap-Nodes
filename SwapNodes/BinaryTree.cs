@@ -48,33 +48,27 @@ namespace SwapNodes
         {
             MyBinaryTreeNode node = FindByValue(Root, Root, value);
 
-            if (left == -1)
-            {
-                node.Left = null;
-            }
-            else
-            {
-                node.Left = new MyBinaryTreeNode(left, node.Level + 1);
-                if (TreeLevel == node.Level)
-                {
-                    TreeLevel++;
-                }
-            }
-            if (right == -1)
-            {
-                node.Right = null;
-            }
-            else
-            {
-                node.Right = new MyBinaryTreeNode(right, node.Level + 1);
-                if (TreeLevel == node.Level)
-                {
-                    TreeLevel++;
-                }
-            }
-
+            node.Left = AddElement(node.Left, node, left);
+            node.Right = AddElement(node.Right, node, right);            
         }
+        public MyBinaryTreeNode AddElement(MyBinaryTreeNode node, MyBinaryTreeNode current, int value)
+        {
+            if (value == -1)
+            {
+                node = null;
+            }
+            else
+            {
+                node = new MyBinaryTreeNode(value, current.Level + 1);
 
+                if (TreeLevel == node.Level - 1)
+                {
+                    TreeLevel++;
+                }
+            }
+
+            return node;
+        }
         public void InorderTraversal(MyBinaryTreeNode node)
         {
             if (node.Left != null)

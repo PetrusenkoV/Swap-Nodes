@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,36 +11,82 @@ namespace SwapNodes
     {
         static void Main(string[] args)
         {
+            StreamReader sr = new StreamReader("C:\\Users\\v.petrusenko\\WorkingFolder\\TrainingTasks\\temp files\\case4.txt");
+
+            StreamReader sr1 = new StreamReader("C:\\Users\\v.petrusenko\\WorkingFolder\\TrainingTasks\\temp files\\myOutput.txt");
+            StreamReader sr2 = new StreamReader("C:\\Users\\v.petrusenko\\WorkingFolder\\TrainingTasks\\temp files\\ExpectedOutput.txt");
+
+
+            string myOutput = null;
+            string expectedOutput = null;
+            string line;
+
+            while ((line = sr1.ReadLine()) != null)
+            {
+                myOutput += line;
+                Console.WriteLine(line);
+            }
+            Console.WriteLine("2nd file starts");
+            //while ((line = sr2.ReadLine()) != null)
+            //{
+            //    myOutput += line;
+            //    Console.WriteLine(line);
+            //}
+
+
+
+
+            List<string> data = new List<string>();
+
+
+            //while ((line = sr.ReadLine()) != null)
+            //{
+            //    data.Add(line);
+            //    Console.WriteLine(line);
+            //}
+
+
+
+            int n = Int32.Parse(sr.ReadLine());
+            int[][] a = new int[n][];
+            for (int a_i = 0; a_i < n; a_i++)
+            {
+                string[] a_temp = sr.ReadLine().Split(' ');
+                a[a_i] = Array.ConvertAll(a_temp, Int32.Parse);
+            }
+            int T = Convert.ToInt32(sr.ReadLine());
+
+            int[] levelOfSwaps = new int[T];
+            for (int i = 0; i < T; i++)
+            {
+                levelOfSwaps[i] = Convert.ToInt32(sr.ReadLine());
+            }
+
             BinaryTree tree = new BinaryTree();
 
-            tree.AddChildrenToNode(1, 2, 3);
-            tree.AddChildrenToNode(2, 4, 5);
-            tree.AddChildrenToNode(3, 6, -1);
-            tree.AddChildrenToNode(4, -1, 7);
-            tree.AddChildrenToNode(5, 8, 9);
-            tree.AddChildrenToNode(6, 10, 11);
-            tree.AddChildrenToNode(7, 12, 13);
-            tree.AddChildrenToNode(8, -1, 14);
-            tree.AddChildrenToNode(9, -1, -1);
-            tree.AddChildrenToNode(10, 15, -1);
-            tree.AddChildrenToNode(11, 16, 17);
-            tree.AddChildrenToNode(12, -1, -1);
-            tree.AddChildrenToNode(13, -1, -1);
-            tree.AddChildrenToNode(14, -1, -1);
-            tree.AddChildrenToNode(15, -1, -1);
-            tree.AddChildrenToNode(16, -1, -1);
-            tree.AddChildrenToNode(17, -1, -1);
+            for (int i = 0; i < n; i++)
+            {
+                tree.AddChildrenToNode(i + 1, a[i][0], a[i][1]);
+            }
 
-            tree.InorderTraversal(tree.Root);
-            Console.WriteLine("\n" + tree.TreeLevel);
-            tree.SwapAtLevel(tree.Root, 2);
-            tree.InorderTraversal(tree.Root);
-            tree.SwapAtLevel(tree.Root, 4);
-            Console.WriteLine();
-            tree.InorderTraversal(tree.Root);
+            for (int i = 0; i < T; i++)
+            {
+                int k = 1;
 
+
+                while (levelOfSwaps[i] * k <= tree.TreeLevel)
+                {
+                    tree.SwapAtLevel(tree.Root, levelOfSwaps[i] * k);
+
+                    k++;
+                }
+                tree.InorderTraversal(tree.Root);
+                Console.WriteLine();
+
+            }
+            Console.WriteLine(myOutput.Equals(expectedOutput));
+            Console.WriteLine(tree.TreeLevel);
             Console.ReadLine();
-
         }
     }
 }
